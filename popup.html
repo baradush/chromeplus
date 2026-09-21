@@ -16,7 +16,7 @@
 
   body {
     font-family: system-ui, sans-serif;
-    width: 250px;
+    width: 280px;
     margin: 0;
     padding: 16px;
     background: radial-gradient(120% 100% at 100% 0%, #1a1440 0%, var(--bg-deep) 55%);
@@ -82,24 +82,63 @@
     fill: var(--accent-purple);
   }
 
-  .switch-row {
+  .features {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .feature-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    cursor: pointer;
   }
 
-  .switch-label {
-    font-size: 12.5px;
+  .feature-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    min-width: 0;
+  }
+
+  .feature-label label {
+    font-size: 12px;
     color: var(--text-primary);
+    cursor: pointer;
+    line-height: 1.3;
+  }
+
+  .info-btn {
+    background: none;
+    border: none;
+    padding: 2px;
+    display: flex;
+    flex-shrink: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .info-btn:hover {
+    background: rgba(45, 212, 191, 0.18);
+  }
+  .info-btn svg {
+    width: 13px;
+    height: 13px;
+    fill: var(--text-muted);
+    transition: fill 0.15s ease;
+  }
+  .info-btn:hover svg {
+    fill: var(--accent-cyan);
   }
 
   .switch {
     position: relative;
-    width: 36px;
-    height: 20px;
+    width: 34px;
+    height: 19px;
     flex-shrink: 0;
+    display: block;
+    cursor: pointer;
   }
   .switch input {
     opacity: 0;
@@ -117,8 +156,8 @@
   .slider::before {
     content: "";
     position: absolute;
-    width: 14px;
-    height: 14px;
+    width: 13px;
+    height: 13px;
     left: 2px;
     top: 2px;
     background: var(--text-primary);
@@ -131,7 +170,15 @@
     border-color: transparent;
   }
   .switch input:checked + .slider::before {
-    transform: translateX(16px);
+    transform: translateX(15px);
+  }
+
+  .section-caption {
+    font-size: 9.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin: 4px 0 -2px;
   }
 
   p.hint {
@@ -147,7 +194,7 @@
     <div class="header">
       <div>
         <h1>ChomePlus</h1>
-        <p class="subtitle">Install Prompt Blocker</p>
+        <p class="subtitle">Nag Prompt Blocker</p>
       </div>
       <button id="settings" class="icon-btn" title="Extension details" aria-label="Extension details">
         <svg viewBox="0 0 24 24">
@@ -156,14 +203,8 @@
       </button>
     </div>
     <div class="accent-bar"></div>
-    <label class="switch-row">
-      <span class="switch-label">Block "Install app" prompts</span>
-      <span class="switch">
-        <input type="checkbox" id="toggle">
-        <span class="slider"></span>
-      </span>
-    </label>
-    <p class="hint">Reload open tabs after changing this for it to take effect.</p>
+    <div id="features" class="features"></div>
+    <p class="hint">Reload open tabs after changing a setting for it to fully take effect.</p>
   </div>
   <script src="popup.js"></script>
 </body>
